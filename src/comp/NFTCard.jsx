@@ -1,5 +1,5 @@
 import React from "react"
-import { Stack, Grid, Card, CardContent, Typography, CardMedia, Button } from "@mui/material"
+import { Box, Grid, Card, CardContent, Typography, CardMedia, Button } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 
 export const NFTCard = ({ nft }) => {
@@ -23,27 +23,27 @@ export const NFTCard = ({ nft }) => {
             }
           }}
         >
-          <Typography variant="h5" gutterBottom>
-            Title: {nft.title}
-          </Typography>
+          <Typography variant="h6">Title: {nft.title}</Typography>
+          <Typography variant="h7">Token ID: {identifier}</Typography>
+          <Typography variant="h5">{description}</Typography>
 
-          <Typography variant="h5" gutterBottom>
-            Token ID: {identifier}
-          </Typography>
-
-          <Typography variant="h5" gutterBottom>
-            {description}
-          </Typography>
-
-          <Stack spacing={2}>
-            <Button variant="contained" startIcon={<SearchIcon />} href={openseaURL}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              "& > *": {
+                m: 1
+              }
+            }}
+          >
+            <Button href={openseaURL} startIcon={<SearchIcon />} variant="contained" target={"_blank"}>
               OpenSea
             </Button>
 
-            <Button variant="contained" startIcon={<SearchIcon />} href={etherscanURL}>
+            <Button href={etherscanURL} startIcon={<SearchIcon />} variant="contained" target={"_blank"}>
               Etherscan
             </Button>
-          </Stack>
+          </Box>
         </CardContent>
       </Card>
     </Grid>

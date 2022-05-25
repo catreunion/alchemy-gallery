@@ -3,7 +3,7 @@ import { NFTCard } from "./comp/NFTCard"
 
 import CssBaseline from "@mui/material/CssBaseline"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { Box, Paper, TextField, FormControl, RadioGroup, FormControlLabel, Radio, Container, Grid } from "@mui/material"
+import { Box, Paper, TextField, FormControl, RadioGroup, FormControlLabel, Radio, Grid } from "@mui/material"
 import LoadingButton from "@mui/lab/LoadingButton"
 import SearchIcon from "@mui/icons-material/Search"
 
@@ -80,32 +80,48 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Box
-        sx={{
-          backgroundColor: (theme) => (theme.palette.mode === "light" ? theme.palette.grey[200] : theme.palette.grey[900]),
-          overflow: "auto",
-          flexGrow: 1
-        }}
-      >
-        <Paper sx={{ width: 700, display: "flex", margin: "auto", p: 1 }}>
+      <Paper sx={{ width: 455, display: "flex", margin: "auto", p: 1 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            "& > *": {
+              m: 1
+            }
+          }}
+          component="form"
+          autoComplete="off"
+          noValidate
+        >
+          <TextField
+            disabled={isCollection}
+            onChange={(e) => {
+              setWalletAddr(e.target.value)
+            }}
+            sx={{ width: 420 }}
+            id="walletAddr"
+            label="paste a wallet address here"
+          />
+
+          <TextField
+            onChange={(e) => {
+              setCollection(e.target.value)
+            }}
+            sx={{ width: 420 }}
+            id="collection"
+            label="paste a collection address here"
+          />
+
           <Box
             sx={{
-              "& > :not(style)": { m: 1 }
+              display: "flex",
+              flexDirection: "row",
+              "& > *": {
+                m: 1
+              }
             }}
-            autoComplete="off"
-            component="form"
-            noValidate
           >
-            <TextField
-              disabled={isCollection}
-              onChange={(e) => {
-                setWalletAddr(e.target.value)
-              }}
-              sx={{ width: 420 }}
-              id="walletAddr"
-              label="paste a wallet address here"
-            />
-
             <FormControl>
               {/* <FormLabel></FormLabel> */}
               <RadioGroup
@@ -121,15 +137,6 @@ const App = () => {
                 <FormControlLabel control={<Radio />} value="collection" label="Search Contract NFTs" />
               </RadioGroup>
             </FormControl>
-
-            <TextField
-              onChange={(e) => {
-                setCollection(e.target.value)
-              }}
-              sx={{ width: 420 }}
-              id="collection"
-              label="paste a collection address here"
-            />
 
             <LoadingButton
               loading={loading}
@@ -147,16 +154,16 @@ const App = () => {
               SEARCH
             </LoadingButton>
           </Box>
-        </Paper>
-      </Box>
+        </Box>
+      </Paper>
 
-      <Container sx={{ py: 1 }}>
+      <Box sx={{ p: 2 }}>
         <Grid spacing={2} container>
           {NFTs.map((NFT) => (
             <NFTCard nft={NFT} key={NFT.media[0].gateway} />
           ))}
         </Grid>
-      </Container>
+      </Box>
     </ThemeProvider>
   )
 }
