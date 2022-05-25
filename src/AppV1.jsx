@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import { NFTCard } from "./comp/NFTCard"
-import { ThemeProvider, createTheme } from "@mui/material/styles"
-import CssBaseline from "@mui/material/CssBaseline"
-import { Box, Container, TextField, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Grid, Paper } from "@mui/material"
-import LoadingButton from "@mui/lab/LoadingButton"
 
+import CssBaseline from "@mui/material/CssBaseline"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
+import { Box, Paper, TextField, FormControl, RadioGroup, FormControlLabel, Radio, Container, Grid } from "@mui/material"
+import LoadingButton from "@mui/lab/LoadingButton"
 import SearchIcon from "@mui/icons-material/Search"
 
 const theme = createTheme()
@@ -23,10 +23,9 @@ const App = () => {
   const [walletAddr, setWalletAddr] = useState("")
   const [collection, setCollection] = useState("")
   const [isCollection, setIsCollection] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [NFTs, setNFTs] = useState([])
   const { REACT_APP_ALCHEMY_MAINNET_KEY } = process.env
-
-  const [loading, setLoading] = useState(false)
 
   const handleClick = () => {
     setLoading(true)
@@ -68,13 +67,15 @@ const App = () => {
       const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${REACT_APP_ALCHEMY_MAINNET_KEY}/getNFTsForCollection/`
       const fetchURL = `${baseURL}?contractAddress=${collection}&withMetadata=${"true"}`
       const collectedNFTs = await fetch(fetchURL, requestOptions).then((data) => data.json())
-      // setLoading(false)
 
       if (collectedNFTs) {
         console.log(collectedNFTs)
         setNFTs(collectedNFTs.nfts)
       }
 
+      setLoading(false)
+    } else {
+      alert("A collection address is needed.")
       setLoading(false)
     }
   }
@@ -101,16 +102,16 @@ const App = () => {
           >
             <TextField
               disabled={isCollection}
-              label="paste your wallet address here"
-              id="walletAddr"
               onChange={(e) => {
                 setWalletAddr(e.target.value)
               }}
               sx={{ width: 420 }}
+              id="walletAddr"
+              label="paste a wallet address here"
             />
 
             <FormControl>
-              <FormLabel></FormLabel>
+              {/* <FormLabel></FormLabel> */}
               <RadioGroup
                 onChange={(e) => {
                   if (e.target.value === "collection") {
@@ -120,32 +121,32 @@ const App = () => {
                   }
                 }}
               >
-                <FormControlLabel control={<Radio />} value="wallet" label="search for wallet address" />
-                <FormControlLabel control={<Radio />} value="collection" label="search collection" />
+                <FormControlLabel control={<Radio />} value="wallet" label="Search Wallet NFTs" />
+                <FormControlLabel control={<Radio />} value="collection" label="Search Contract NFTs" />
               </RadioGroup>
             </FormControl>
 
             <TextField
-              label="paste the collection address here"
-              id="collection"
               onChange={(e) => {
                 setCollection(e.target.value)
               }}
               sx={{ width: 420 }}
+              id="collection"
+              label="paste a collection address here"
             />
 
             <LoadingButton
-              size="large"
+              loading={loading}
+              loadingPosition="start"
+              startIcon={<SearchIcon />}
               onClick={() => {
                 handleClick()
                 if (isCollection) {
                   fetchCollection()
                 } else fetchPersonalNFTs()
               }}
-              loading={loading}
+              size="large"
               variant="contained"
-              loadingPosition="start"
-              startIcon={<SearchIcon />}
             >
               SEARCH
             </LoadingButton>
