@@ -31,15 +31,15 @@ const App = () => {
     setLoading(true)
   }
 
+  var requestOptions = {
+    method: "GET"
+  }
+
   const fetchPersonalNFTs = async () => {
     let collectedNFTs
     const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${REACT_APP_ALCHEMY_MAINNET_KEY}/getNFTs/`
 
     if (!collection.length) {
-      var requestOptions = {
-        method: "GET"
-      }
-
       console.log("searching NFTs owned by the wallet address")
       const fetchURL = `${baseURL}?owner=${walletAddr}`
       collectedNFTs = await fetch(fetchURL, requestOptions).then((data) => data.json())
@@ -59,10 +59,6 @@ const App = () => {
 
   const fetchCollection = async () => {
     if (collection.length) {
-      var requestOptions = {
-        method: "GET"
-      }
-
       console.log("searching the collection")
       const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${REACT_APP_ALCHEMY_MAINNET_KEY}/getNFTsForCollection/`
       const fetchURL = `${baseURL}?contractAddress=${collection}&withMetadata=${"true"}`
