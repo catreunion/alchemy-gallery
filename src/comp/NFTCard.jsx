@@ -1,5 +1,6 @@
 import React from "react"
-import { Grid, Card, CardContent, Typography, CardMedia, Button } from "@mui/material"
+import { Stack, Grid, Card, CardContent, Typography, CardMedia, Button } from "@mui/material"
+import SearchIcon from "@mui/icons-material/Search"
 
 export const NFTCard = ({ nft }) => {
   const identifier = parseInt(nft.id.tokenId, 16)
@@ -11,7 +12,17 @@ export const NFTCard = ({ nft }) => {
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Card sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
         <CardMedia sx={{ pt: "10%" }} component="img" image={nft.media[0].gateway} alt="random" />
-        <CardContent sx={{ flexGrow: 1 }}>
+        {/* <CardContent sx={{ flexGrow: 1 }}> */}
+        <CardContent
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            "& > *": {
+              m: 1
+            }
+          }}
+        >
           <Typography variant="h5" gutterBottom>
             Title: {nft.title}
           </Typography>
@@ -24,12 +35,15 @@ export const NFTCard = ({ nft }) => {
             {description}
           </Typography>
 
-          <Button variant="contained" href={openseaURL}>
-            OpenSea
-          </Button>
-          <Button variant="contained" href={etherscanURL}>
-            Etherscan
-          </Button>
+          <Stack spacing={2}>
+            <Button variant="contained" startIcon={<SearchIcon />} href={openseaURL}>
+              OpenSea
+            </Button>
+
+            <Button variant="contained" startIcon={<SearchIcon />} href={etherscanURL}>
+              Etherscan
+            </Button>
+          </Stack>
         </CardContent>
       </Card>
     </Grid>
