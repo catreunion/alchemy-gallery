@@ -107,6 +107,16 @@ const App = () => {
           />
 
           <Stack direction="row" spacing={5} alignItems="center">
+            {/* <label>
+              <input
+                type={"checkbox"}
+                onChange={(e) => {
+                  setIsInsideCollection(e.target.checked)
+                }}
+              ></input>
+              Search Contract NFTs
+            </label> */}
+
             <FormControl>
               {/* <FormLabel></FormLabel> */}
               <RadioGroup

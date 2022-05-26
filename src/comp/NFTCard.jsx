@@ -39,3 +39,8 @@ export const NFTCard = ({ nft }) => {
     </Grid>
   )
 }
+
+// console.log(nft.description?.substr(0, 150))
+// console.log(nft.contract.address.substr(0, 4))
+// console.log(nft.contract.address.substr(nft.contract.address.length - 4))
+// console.log(nft.id.tokenId.substr(nft.id.tokenId.length - 4))
