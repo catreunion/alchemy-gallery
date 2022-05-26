@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { NFTCard } from "./comp/NFTCard"
+import Footer from "./comp/Footer"
 
 import CssBaseline from "@mui/material/CssBaseline"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
@@ -148,6 +149,8 @@ const App = () => {
           ))}
         </Grid>
       </Box>
+
+      <Footer />
     </ThemeProvider>
   )
 }
