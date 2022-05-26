@@ -95,7 +95,9 @@ const App = () => {
           autoComplete="off"
           noValidate
         >
-          <img id="logo" src={alchemylogo} alt=""></img>
+          <a href="https://docs.alchemy.com/alchemy/road-to-web3/weekly-learning-challenges/4.-how-to-create-an-nft-gallery-alchemy-nft-api">
+            <img id="logo" src={alchemylogo} alt=""></img>
+          </a>
 
           <TextField
             disabled={isCollection}
