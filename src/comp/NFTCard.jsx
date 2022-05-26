@@ -1,17 +1,17 @@
 import React from "react"
-import { Box, Grid, Card, CardContent, Typography, CardMedia, Button } from "@mui/material"
+import { Grid, Card, CardMedia, CardContent, Typography, Box, Button } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 
 export const NFTCard = ({ nft }) => {
   const identifier = parseInt(nft.id.tokenId, 16)
+  const description = nft.description?.substr(0, 150)
   const openseaURL = `https://opensea.io/assets/ethereum/${nft.contract.address}/${identifier}`
   const etherscanURL = `https://etherscan.io/token/${nft.contract.address}?a=${identifier}`
-  const description = nft.description?.substr(0, 150)
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-      <Card sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
-        <CardMedia sx={{ pt: "10%" }} component="img" image={nft.media[0].gateway} alt="random" />
+      <Card sx={{ display: "flex", flexDirection: "column" }}>
+        <CardMedia image={nft.media[0].gateway} sx={{ p: 1 }} component="img" alt="NFTs collected" />
         {/* <CardContent sx={{ flexGrow: 1 }}> */}
         <CardContent
           sx={{
@@ -31,16 +31,17 @@ export const NFTCard = ({ nft }) => {
             sx={{
               display: "flex",
               flexDirection: "row",
+              justifyContent: "space-around",
               "& > *": {
                 m: 1
               }
             }}
           >
-            <Button href={openseaURL} startIcon={<SearchIcon />} variant="contained" target={"_blank"}>
+            <Button href={openseaURL} startIcon={<SearchIcon />} target={"_blank"} variant="contained">
               OpenSea
             </Button>
 
-            <Button href={etherscanURL} startIcon={<SearchIcon />} variant="contained" target={"_blank"}>
+            <Button href={etherscanURL} startIcon={<SearchIcon />} target={"_blank"} variant="contained">
               Etherscan
             </Button>
           </Box>

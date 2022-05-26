@@ -50,7 +50,7 @@ const App = () => {
     }
 
     if (collectedNFTs) {
-      console.log(collectedNFTs)
+      // console.log(collectedNFTs)
       setNFTs(collectedNFTs.ownedNfts)
     }
 
@@ -65,7 +65,7 @@ const App = () => {
       const collectedNFTs = await fetch(fetchURL, requestOptions).then((data) => data.json())
 
       if (collectedNFTs) {
-        console.log(collectedNFTs)
+        // console.log(collectedNFTs)
         setNFTs(collectedNFTs.nfts)
       }
 
@@ -80,14 +80,14 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Paper sx={{ width: 455, display: "flex", margin: "auto", p: 1 }}>
+      <Paper sx={{ width: 455, margin: "auto", my: 2, p: 1 }}>
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             "& > *": {
-              m: 1
+              my: 1
             }
           }}
           component="form"
@@ -148,7 +148,7 @@ const App = () => {
                   fetchCollection()
                 } else fetchPersonalNFTs()
               }}
-              size="large"
+              size="medium"
               variant="contained"
             >
               SEARCH
