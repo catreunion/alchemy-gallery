@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Box, Paper, TextField, FormControl, RadioGroup, FormControlLabel, Radio, Grid } from "@mui/material"
 import LoadingButton from "@mui/lab/LoadingButton"
 import SearchIcon from "@mui/icons-material/Search"
+import alchemylogo from "./alchemylogo.svg"
 
 const theme = createTheme()
 
@@ -94,6 +95,8 @@ const App = () => {
           autoComplete="off"
           noValidate
         >
+          <img id="logo" src={alchemylogo} alt=""></img>
+
           <TextField
             disabled={isCollection}
             onChange={(e) => {
@@ -117,6 +120,7 @@ const App = () => {
             sx={{
               display: "flex",
               flexDirection: "row",
+              alignItems: "center",
               "& > *": {
                 m: 1
               }
@@ -148,7 +152,7 @@ const App = () => {
                   fetchCollection()
                 } else fetchPersonalNFTs()
               }}
-              size="medium"
+              size="large"
               variant="contained"
             >
               SEARCH
