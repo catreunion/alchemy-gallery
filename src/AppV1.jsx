@@ -3,7 +3,7 @@ import { NFTCard } from "./comp/NFTCard"
 
 import CssBaseline from "@mui/material/CssBaseline"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { Box, Paper, TextField, FormControl, RadioGroup, FormControlLabel, Radio, Grid } from "@mui/material"
+import { Box, Paper, TextField, FormControl, RadioGroup, FormControlLabel, Radio, Grid, Stack } from "@mui/material"
 import LoadingButton from "@mui/lab/LoadingButton"
 import SearchIcon from "@mui/icons-material/Search"
 import alchemylogo from "./alchemylogo.svg"
@@ -81,24 +81,12 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Paper sx={{ width: 455, margin: "auto", my: 2, p: 1 }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            "& > *": {
-              my: 1
-            }
-          }}
-          component="form"
-          autoComplete="off"
-          noValidate
-        >
-          <a href="https://docs.alchemy.com/alchemy/road-to-web3/weekly-learning-challenges/4.-how-to-create-an-nft-gallery-alchemy-nft-api">
-            <img id="logo" src={alchemylogo} alt=""></img>
-          </a>
+      <Paper sx={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "auto", width: 455 }}>
+        <a href="https://docs.alchemy.com/alchemy/road-to-web3/weekly-learning-challenges/4.-how-to-create-an-nft-gallery-alchemy-nft-api">
+          <img id="logo" src={alchemylogo} alt=""></img>
+        </a>
 
+        <Stack direction="column" spacing={1} alignItems="center">
           <TextField
             disabled={isCollection}
             onChange={(e) => {
@@ -108,7 +96,6 @@ const App = () => {
             id="walletAddr"
             label="paste a wallet address here"
           />
-
           <TextField
             onChange={(e) => {
               setCollection(e.target.value)
@@ -118,17 +105,7 @@ const App = () => {
             label="paste a collection address here"
           />
 
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              "& > *": {
-                m: 1
-              }
-            }}
-          >
+          <Stack direction="row" spacing={5} alignItems="center">
             <FormControl>
               {/* <FormLabel></FormLabel> */}
               <RadioGroup
@@ -160,8 +137,8 @@ const App = () => {
             >
               SEARCH
             </LoadingButton>
-          </Box>
-        </Box>
+          </Stack>
+        </Stack>
       </Paper>
 
       <Box sx={{ p: 2 }}>
