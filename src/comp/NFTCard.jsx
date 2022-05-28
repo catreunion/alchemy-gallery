@@ -11,22 +11,24 @@ export const NFTCard = ({ nft }) => {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Card sx={{ display: "flex", flexDirection: "column" }}>
-        <CardMedia image={nft.media[0].gateway} sx={{ p: 1 }} component="img" alt="NFTs collected" />
+        <CardMedia image={nft.media[0].gateway} sx={{ p: 2 }} component="img" alt="NFTs collected" />
+
         <CardContent
           sx={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            "& > *": {
-              m: 1
-            }
+            alignItems: "center"
           }}
         >
-          <Typography variant="h6">Title: {nft.title}</Typography>
-          <Typography variant="h7">Token ID: {identifier}</Typography>
+          <Typography variant="h6" color="primary.main">
+            Title: {nft.title}
+          </Typography>
+          <Typography variant="h7" color="text.secondary">
+            Token ID: {identifier}
+          </Typography>
           <Typography variant="h5">{description}</Typography>
 
-          <Stack direction="row" spacing={2} alignItems="center">
+          <Stack sx={{ pt: 2 }} direction="row" spacing={2} alignItems="center">
             <Button href={openseaURL} startIcon={<SearchIcon />} target={"_blank"} variant="outlined">
               OpenSea
             </Button>
