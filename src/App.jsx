@@ -3,7 +3,7 @@ import { NFTCard } from "./comp/NFTCard"
 import Header from "./comp/Header"
 import Footer from "./comp/Footer"
 
-import { Box, Paper, TextField, FormControl, RadioGroup, FormControlLabel, Radio, Grid, Stack } from "@mui/material"
+import { Paper, Stack, TextField, FormControl, RadioGroup, FormControlLabel, Radio, Box, Grid } from "@mui/material"
 import LoadingButton from "@mui/lab/LoadingButton"
 import SearchIcon from "@mui/icons-material/Search"
 import alchemylogo from "./alchemylogo.svg"
@@ -69,18 +69,18 @@ const App = () => {
     <>
       <Header />
 
-      <Paper sx={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "auto", width: 455, mt: 2 }}>
-        <a href="https://docs.alchemy.com/alchemy/road-to-web3/weekly-learning-challenges/4.-how-to-create-an-nft-gallery-alchemy-nft-api">
-          <img id="logo" src={alchemylogo} alt=""></img>
+      <Paper sx={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "auto", maxWidth: 500, py: 2, mt: 2 }}>
+        <a target="_blank" href="https://docs.alchemy.com/alchemy/road-to-web3/weekly-learning-challenges/4.-how-to-create-an-nft-gallery-alchemy-nft-api" rel="noopener noreferrer">
+          <img src={alchemylogo} alt="Alchemy"></img>
         </a>
 
-        <Stack direction="column" spacing={1} alignItems="center">
+        <Stack direction="column" spacing={2} alignItems="center">
           <TextField
             disabled={isCollection}
             onChange={(e) => {
               setWalletAddr(e.target.value)
             }}
-            sx={{ width: 420 }}
+            sx={{ minWidth: 300 }}
             id="walletAddr"
             label="paste a wallet address here"
           />
@@ -88,12 +88,12 @@ const App = () => {
             onChange={(e) => {
               setCollection(e.target.value)
             }}
-            sx={{ width: 420 }}
+            sx={{ minWidth: 300 }}
             id="collection"
             label="paste a collection address here"
           />
 
-          <Stack direction="row" spacing={5} alignItems="center">
+          <Stack direction="row" spacing={1} alignItems="center">
             <FormControl>
               {/* <FormLabel></FormLabel> */}
               <RadioGroup
@@ -120,7 +120,7 @@ const App = () => {
                   fetchCollection()
                 } else fetchPersonalNFTs()
               }}
-              size="large"
+              size="medium"
               variant="contained"
             >
               SEARCH

@@ -28,11 +28,11 @@ export const NFTCard = ({ nft }) => {
           </Typography>
           <Typography variant="h5">{description}</Typography>
 
-          <Stack sx={{ pt: 2 }} direction="row" spacing={2} alignItems="center">
-            <Button href={openseaURL} startIcon={<SearchIcon />} target={"_blank"} variant="outlined">
+          <Stack sx={{ pt: 2 }} direction="row" spacing={1}>
+            <Button href={openseaURL} startIcon={<SearchIcon />} size="small" target={"_blank"} variant="outlined">
               OpenSea
             </Button>
-            <Button href={etherscanURL} startIcon={<SearchIcon />} target={"_blank"} variant="outlined" color="secondary">
+            <Button href={etherscanURL} startIcon={<SearchIcon />} size="small" target={"_blank"} variant="outlined" color="secondary">
               Etherscan
             </Button>
           </Stack>
