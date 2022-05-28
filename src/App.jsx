@@ -1,25 +1,12 @@
 import React, { useState } from "react"
 import { NFTCard } from "./comp/NFTCard"
+import Header from "./comp/Header"
 import Footer from "./comp/Footer"
 
-import CssBaseline from "@mui/material/CssBaseline"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Box, Paper, TextField, FormControl, RadioGroup, FormControlLabel, Radio, Grid, Stack } from "@mui/material"
 import LoadingButton from "@mui/lab/LoadingButton"
 import SearchIcon from "@mui/icons-material/Search"
 import alchemylogo from "./alchemylogo.svg"
-
-const theme = createTheme()
-
-theme.typography.h3 = {
-  fontSize: "1.2rem",
-  "@media (min-width:600px)": {
-    fontSize: "1.5rem"
-  },
-  [theme.breakpoints.up("md")]: {
-    fontSize: "2rem"
-  }
-}
 
 const App = () => {
   const [walletAddr, setWalletAddr] = useState("")
@@ -79,10 +66,10 @@ const App = () => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <>
+      <Header />
 
-      <Paper sx={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "auto", width: 455 }}>
+      <Paper sx={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "auto", width: 455, mt: 2 }}>
         <a href="https://docs.alchemy.com/alchemy/road-to-web3/weekly-learning-challenges/4.-how-to-create-an-nft-gallery-alchemy-nft-api">
           <img id="logo" src={alchemylogo} alt=""></img>
         </a>
@@ -107,16 +94,6 @@ const App = () => {
           />
 
           <Stack direction="row" spacing={5} alignItems="center">
-            {/* <label>
-              <input
-                type={"checkbox"}
-                onChange={(e) => {
-                  setIsInsideCollection(e.target.checked)
-                }}
-              ></input>
-              Search Contract NFTs
-            </label> */}
-
             <FormControl>
               {/* <FormLabel></FormLabel> */}
               <RadioGroup
@@ -161,7 +138,7 @@ const App = () => {
       </Box>
 
       <Footer />
-    </ThemeProvider>
+    </>
   )
 }
 
